@@ -15,14 +15,37 @@ class Sneaker:
         return f'{self.id_item} {self.brand} {self.model} {self.coloring} {self.size} {self.count}'
 
 
-def search_in_sneakers(text):
-    for item in sneakers:
-        if item.size == text or item.brand == text or item.coloring == text or item.model == text:
-            search_sneakers.append(item)
+def search_in_sneakers(text_model, text_size):
+    global search_sneakers
+    global sneakers
+    search_sneakers.clear()
+    refresh_sneak()
+
+    if text_size.get() == '' and text_model.get() == '':
+        return sneakers
+
+    size = text_size.get()
+    brand = text_model.get()
+
+    if size != '' and brand == '':
+        for item in sneakers:
+            if item.size == int(size):
+                search_sneakers.append(item)
+    elif brand != '' and size == '':
+        for item in sneakers:
+            if item.brand == str(brand):
+                search_sneakers.append(item)
+    else:
+        for item in sneakers:
+            if item.brand == str(brand) and item.size == int(size):
+                search_sneakers.append(item)
+
+    return search_sneakers
 
 
-def refresh_sneak(self):
-    self.sneakers = [position_1, position_4, position_5, position_2, position_3, position_6]
+def refresh_sneak():
+    global sneakers
+    sneakers = [position_1, position_4, position_5, position_2, position_3, position_6]
 
 
 position_1 = Sneaker(1, "Adidas", "Ozweego", 10, "Черный", 52)
