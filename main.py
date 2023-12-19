@@ -11,11 +11,11 @@ class App(CTk.CTk):
     def __init__(self):
         super().__init__()
 
+        self.model_text = Tk.StringVar()
+        self.size_text = Tk.StringVar()
         self.label_purchase = None
         self.size_box = None
-        self.size_text = CTk.StringVar()
         self.brand_box = None
-        self.model_text = CTk.StringVar()
 
         self.button = None
         self.tree_buy = None
@@ -119,6 +119,11 @@ class App(CTk.CTk):
         self.button = CTk.CTkButton(self, text='Найти', command=self.search_button)
         self.button.grid(row=3, rowspan=2, column=3, padx=30)
 
+        label_size = CTk.CTkLabel(self, text='Размер')
+        label_size.grid(row=1, column=3)
+
+        label_brand = CTk.CTkLabel(self, text='Бренд')
+        label_brand.grid(row=2, column=3)
         self.brand_box = CTk.CTkEntry(self, placeholder_text='Бренд', textvariable=self.model_text)
         self.brand_box.grid(row=2, rowspan=2, column=3)
 
